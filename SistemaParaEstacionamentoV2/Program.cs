@@ -61,7 +61,10 @@ while(exibirMenu)
         case "3":
             //metodo da classe financeiro delegação de atividades financeiras
             financeiro.CalcularValorTotal();//saida de valores financeiros
-            operacional.RetiradaDeVeiculo();
+            if(financeiro.validaSaida==true){
+                operacional.RetiradaDeVeiculo();
+            }
+            
             menuConfiguracao = false;
             break;
         
