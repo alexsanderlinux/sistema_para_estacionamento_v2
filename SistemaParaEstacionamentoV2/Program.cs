@@ -4,14 +4,12 @@ string opcao;
 bool exibirMenu = true;
 bool menuConfiguracao = true;
 bool menuOperacao = false;
+//List<string> recebeListaCarros = new List<string>();
 
 
 Financeiro financeiro = new Financeiro();
+Operacional operacional = new Operacional();
 
-//AdministracaoOperacional admOperacional = new AdministracaoOperacional();
-//Atendente novoAtendente = new Atendente();
-//AdministracaoFinanceira admFinanceiro = new AdministracaoFinanceira();
- 
 
 
 //Declaração de menu
@@ -51,19 +49,19 @@ while(exibirMenu)
 
         case "1":
             Console.Clear();
-            //admOperacional.CadastrarNovoVeiculo();
+            operacional.CadastrarNovoVeiculo();
             menuConfiguracao = false;
             break;
 
         case "2":
-            //admOperacional.ListarVeiculos();
+            operacional.ListarVeiculos();
             menuConfiguracao = false;
             break;
 
         case "3":
             //metodo da classe financeiro delegação de atividades financeiras
             financeiro.CalcularValorTotal();//saida de valores financeiros
-            //admOperacional.RetiradaDeVeiculo();
+            operacional.RetiradaDeVeiculo();
             menuConfiguracao = false;
             break;
         

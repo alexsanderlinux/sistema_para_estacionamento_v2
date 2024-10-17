@@ -7,6 +7,7 @@ namespace SistemaParaEstacionamentoV2.models
 {
     public class Financeiro
     {
+        Operacional operacional = new Operacional();
         public decimal ResgatarValorEntrada = 0;
         public decimal ResgatarValorPorHora = 0;
         public decimal ResgatarPermanencia = 0;
@@ -36,7 +37,9 @@ namespace SistemaParaEstacionamentoV2.models
             string valPermanencia  = Console.ReadLine();
             ResgatarPermanencia = Convert.ToDecimal(valPermanencia);
             this.TotalCalculado = this.ResgatarValorEntrada + (this.ResgatarValorPorHora * this.ResgatarPermanencia); 
-            Console.WriteLine(this.TotalCalculado);           
+            Console.WriteLine(this.TotalCalculado);
+            operacional.validaSaida = true; 
+            
         }
     }   
 
