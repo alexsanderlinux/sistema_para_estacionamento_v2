@@ -13,6 +13,8 @@ namespace SistemaParaEstacionamentoV2.models
         public decimal ResgatarPermanencia = 0;
         public decimal TotalCalculado = 0;
 
+        public bool validaSaida = false;
+
         public void ResgatarValores()
         {
             Console.WriteLine("Gentileza informar o valor da entrada:");
@@ -38,7 +40,7 @@ namespace SistemaParaEstacionamentoV2.models
             ResgatarPermanencia = Convert.ToDecimal(valPermanencia);
             this.TotalCalculado = this.ResgatarValorEntrada + (this.ResgatarValorPorHora * this.ResgatarPermanencia); 
             Console.WriteLine(this.TotalCalculado);
-            operacional.validaSaida = true; 
+            validaSaida = true; 
             
         }
     }   
