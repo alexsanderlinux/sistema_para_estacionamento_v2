@@ -7,7 +7,6 @@ namespace SistemaParaEstacionamentoV2.models
 {
     public class Operacional
     {
-        public bool validaSaida = false;
         public List<string> listaCarros = new List<string>();
 
         public Carro novoCarro = new Carro();
