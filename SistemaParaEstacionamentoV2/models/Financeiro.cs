@@ -33,6 +33,7 @@ namespace SistemaParaEstacionamentoV2.models
            
         }
 
+        //todo: validacao se existe veiculos para calcular valores
         public void CalcularValorTotal()
         {
             Console.WriteLine("Gentileza informar a permanencia do veiculo:");

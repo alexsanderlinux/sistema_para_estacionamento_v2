@@ -44,7 +44,7 @@ namespace SistemaParaEstacionamentoV2.models
 
         }
 
-
+        //todo: validacao se existem veiculos para listar
 
         public void ListarVeiculos()
         {
@@ -57,7 +57,7 @@ namespace SistemaParaEstacionamentoV2.models
 
         public void RetiradaDeVeiculo()
         {
-            
+            //todo: retirar por indice
 
             Console.WriteLine("Digite o codigo de referencia do veiculo...");
             string recVaga = Console.ReadLine();
