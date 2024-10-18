@@ -23,60 +23,111 @@ namespace SistemaParaEstacionamentoV2.models
                
         }
 
+           
         public void CadastrarNovoVeiculo()
         {
-                     
             Console.WriteLine("1 - Inserir nome do dono:");
-            novoCarro.Dono = Console.ReadLine();
+            string dono = Console.ReadLine();
+            novoCarro.Dono = dono; 
             Console.WriteLine("2 - Inserir a marca:");
-            novoCarro.Marca = Console.ReadLine();
+            string marca = Console.ReadLine();
+            novoCarro.Marca = marca;
             Console.WriteLine("3 - Inserir a cor:");
-            novoCarro.Cor = Console.ReadLine();
+            string cor = Console.ReadLine();
+            novoCarro.Cor = cor;
             Console.WriteLine("4 - Inserir a placa: ");
-            novoCarro.Placa = Console.ReadLine();
+            string placa = Console.ReadLine();
+            novoCarro.Placa = placa.ToUpper();
+            int cont2 = 0;
+
+            while(string.IsNullOrEmpty(placa))
+            {
+                Console.WriteLine("4 - ** o campo placa é obrigatorio** - Inserir a placa: ");
+                placa = Console.ReadLine();
+                novoCarro.Placa = placa.ToUpper();
+                cont2++;
+            }
+            
+            //recupera indice do veiculo cadastrado
+            int index = listaCarros.FindIndex(a => a.Contains(novoCarro.Placa));
+            
+            //varre a lista para verificar se existe o indice cadastrado com a mesma placa
+            for(int i = 0; i < listaCarros.Count; i++)
+            {
+                //se existir o indice o laço repetira a coleta da placa ate que o usuário informe uma placa diferente para que o cadastro seja concluido.
+                if(index == i)
+                {      
+                    int cont = 0;
+                    while(index==i)
+                    {
+                        Console.WriteLine("Este veiculo já está estacionado aqui...");   
+                        Console.WriteLine("4 - Inserir a placa: ");
+                        placa = Console.ReadLine();
+                        novoCarro.Placa = placa.ToUpper();
+                        index = listaCarros.FindIndex(a => a.Contains(novoCarro.Placa));
+                        cont++;
+                    }
+                }
+                
+            }
+            
+
             Console.WriteLine("5 - Inserir o modelo: ");
-            novoCarro.Modelo = Console.ReadLine();        
+            string modelo = Console.ReadLine();
+            novoCarro.Modelo = modelo;
             Console.WriteLine("6 - Inserir o tipo: ");
-            novoCarro.Tipo = Console.ReadLine();
+            string tipo = Console.ReadLine();
+            novoCarro.Tipo = tipo;
             Console.WriteLine("7 - Inserir o vaga: ");
-            novoCarro.Vaga = Console.ReadLine();
-            listaCarros.Add($"{novoCarro.Dono},{novoCarro.Marca},{novoCarro.Cor},{novoCarro.Placa},{novoCarro.Modelo},{novoCarro.Tipo},{novoCarro.Vaga}");
-
+            string vaga = Console.ReadLine();
+            novoCarro.Vaga = vaga;
+            listaCarros.Add($"{novoCarro.Dono},{novoCarro.Marca},{novoCarro.Cor},{novoCarro.Placa},{novoCarro.Modelo},{novoCarro.Tipo},{novoCarro.Vaga}");           
         }
-
+            
         //todo: validacao se existem veiculos para listar
 
         public void ListarVeiculos()
         {
-            for (int i = 0; i < listaCarros.Count; i++)
+            if (listaCarros.Any())
             {
-                Console.WriteLine($"Dados do carro: {listaCarros[i]}");
-                
+                for (int i = 0; i < listaCarros.Count; i++)
+                {
+                    Console.WriteLine($"Dados do carro: {listaCarros[i]}");
+                    
+                }
+            }    
+            else
+            {
+                Console.WriteLine("Não há veiculos estacionados.");
             }
         }
 
         public void RetiradaDeVeiculo()
         {
-            //todo: retirar por indice
+            if(listaCarros.Any())
+            {
+                
+                Console.WriteLine("Baixa no financeiro.");
+                Console.WriteLine("Gentileza digitar a placa do veiculo...");
+                string placa = Console.ReadLine();
 
-            Console.WriteLine("Digite o codigo de referencia do veiculo...");
-            string recVaga = Console.ReadLine();
-            int convRecuperaVaga = Convert.ToInt32(recVaga);
+                int index = listaCarros.FindIndex(a => a.Contains(placa.ToUpper()));
             
-
-
-                for (int i = 0; i < listaCarros.Count; i++)
+                for(int i = 0; i < listaCarros.Count; i++)
                 {
-                    if(i == convRecuperaVaga)
-                    {
-                        listaCarros.RemoveAt(convRecuperaVaga);
+                    if(index == i)
+                    {      
+                        listaCarros.RemoveAt(index);
+                        Console.WriteLine($"Veiculo com a placa {placa} removido com êxito!");                        
                     }
+                    
                 }
+            }
+             else
+            {
+                Console.WriteLine("Não há veiculos estacionados para retirar.");
+            }
             
-            
-            
-        }
-
-        
+        }        
     }
 }

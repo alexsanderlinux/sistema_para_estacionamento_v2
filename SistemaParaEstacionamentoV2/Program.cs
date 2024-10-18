@@ -4,12 +4,10 @@ string opcao;
 bool exibirMenu = true;
 bool menuConfiguracao = true;
 bool menuOperacao = false;
-//List<string> recebeListaCarros = new List<string>();
-
 
 Financeiro financeiro = new Financeiro();
 Operacional operacional = new Operacional();
-
+Administrativo administrativo = new Administrativo();
 
 
 //Declaração de menu
@@ -39,7 +37,7 @@ while(exibirMenu)
     {
         case "0":
             Console.Clear();
-            //novoAtendente.CadastrarAtendente();
+            administrativo.CadastrarAtendente();//cadastro do atendente do estacionamento
             //metodo da classe financeiro delegação de atividades financeiras
             financeiro.ResgatarValores();//entrada de valores financeiros
             menuConfiguracao = false;
@@ -60,7 +58,15 @@ while(exibirMenu)
 
         case "3":
             //metodo da classe financeiro delegação de atividades financeiras
-            financeiro.CalcularValorTotal();//saida de valores financeiros
+            if(operacional.listaCarros.Any())
+            {
+                financeiro.CalcularValorTotal();
+            }
+            else
+            {
+                Console.WriteLine("Não há veiculos estacionados para calcular valores.");
+            }
+            
             if(financeiro.validaSaida==true){
                 operacional.RetiradaDeVeiculo();
             }
@@ -71,6 +77,8 @@ while(exibirMenu)
         case "4":
             Console.Clear();
             exibirMenu = false;
+            Console.WriteLine($"{administrativo.Nome}, sua carga horaria foi de {administrativo.CargaHoraria}hs. Não se esqueça de fechar o caixa...");
+            Console.WriteLine("Bom descanso!");
             Console.WriteLine("Encerrar programa");
             //Environment.Exit(0);
             break;

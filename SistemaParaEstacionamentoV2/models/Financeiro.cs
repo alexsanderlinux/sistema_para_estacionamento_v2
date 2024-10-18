@@ -40,9 +40,9 @@ namespace SistemaParaEstacionamentoV2.models
             string valPermanencia  = Console.ReadLine();
             ResgatarPermanencia = Convert.ToDecimal(valPermanencia);
             this.TotalCalculado = this.ResgatarValorEntrada + (this.ResgatarValorPorHora * this.ResgatarPermanencia); 
-            Console.WriteLine(this.TotalCalculado);
-            validaSaida = true; 
-            
+            //Console.WriteLine(this.TotalCalculado);
+            Console.WriteLine($"O preço total foi de: R$ {TotalCalculado},00.");
+            validaSaida = true;             
         }
     }   
 
